@@ -1,8 +1,6 @@
 package com.Certif.SlackLike;
 
-import com.Certif.SlackLike.model.Channel;
-import com.Certif.SlackLike.model.Message;
-import com.Certif.SlackLike.model.User;
+import com.Certif.SlackLike.model.*;
 import com.Certif.SlackLike.repository.ChannelRepository;
 import com.Certif.SlackLike.repository.MessageRepository;
 import com.Certif.SlackLike.repository.UserRepository;
@@ -28,7 +26,8 @@ public class RepositoryTests {
     @Test
     void testAddUser() {
 
-        User user = new User("Jean Claude", "Dusse", "JCD", 0);
+        //User user = new User("Jean Claude", "Dusse", "JCD", 0);
+        User user = new User("Gerard" , "Darmon","GD", UserStatus.INACTIVE);
         userRepository.save(user);
 
 
@@ -37,7 +36,8 @@ public class RepositoryTests {
     @Test
     void  testAddChannel(){
 
-        Channel channel = new Channel("Canal1",LocalDateTime.now(),0);
+        //Channel channel = new Channel("Canal1",LocalDateTime.now(),0);
+        Channel channel = new Channel("Canal3",LocalDateTime.now(), ChannelStatus.ACTIVE);
         channelRepository.save(channel);
 
     }
@@ -50,7 +50,8 @@ public class RepositoryTests {
         if ( channel1.isPresent() && users1.isPresent() ){
            User util1 = users1.get()  ;
             Channel canal1 = channel1.get();
-            Message message = new Message("test message", LocalDateTime.now(),util1,canal1,1);
+            //Message message = new Message("test message", LocalDateTime.now(),util1,canal1,1);
+            Message message = new Message("New Message", LocalDateTime.now(),util1,canal1,MessageStatus.ACTIVE);
             messageRepository.save(message);
         }
 

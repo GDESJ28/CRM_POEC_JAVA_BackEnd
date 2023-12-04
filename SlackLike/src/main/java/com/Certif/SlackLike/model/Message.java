@@ -28,13 +28,16 @@ public class Message {
     @ManyToOne
     @JoinColumn(name="channel_id_fk")
     private Channel channel;
-    @Column(nullable = false)
-    private Integer status;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false, columnDefinition = "int4")
+    //private Integer status;
+    private MessageStatus status;
 
     public Message() {
     }
 
-    public Message(String message, LocalDateTime dateMessage, User user, Channel channel, Integer status) {
+    public Message(String message, LocalDateTime dateMessage, User user, Channel channel, MessageStatus status) {
         this.message = message;
         this.dateMessage = dateMessage;
         this.user = user;
@@ -82,11 +85,11 @@ public class Message {
         this.channel = channel;
     }
 
-    public Integer getStatus() {
+    public MessageStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(MessageStatus status) {
         this.status = status;
     }
 

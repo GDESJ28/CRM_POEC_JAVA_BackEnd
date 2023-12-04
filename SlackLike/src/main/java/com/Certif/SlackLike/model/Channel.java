@@ -20,13 +20,15 @@ public class Channel {
     @Column(name="creation_date",nullable = false)
     private LocalDateTime creationDate;
 
-    @Column(nullable = false)
-    private Integer status;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false, columnDefinition = "int4")
+   // private Integer status;
+    private ChannelStatus status;
 
     public Channel() {
     }
 
-    public Channel(String name, LocalDateTime creationDate, Integer status) {
+    public Channel(String name, LocalDateTime creationDate, ChannelStatus status) {
         this.name = name;
         this.creationDate = creationDate;
         this.status = status;
@@ -56,11 +58,11 @@ public class Channel {
         this.creationDate = creationDate;
     }
 
-    public Integer getStatus() {
+    public ChannelStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(ChannelStatus status) {
         this.status = status;
     }
 
@@ -73,4 +75,5 @@ public class Channel {
                 ", status=" + status +
                 '}';
     }
+
 }

@@ -22,13 +22,16 @@ public class User {
     @Column(nullable = false,length = 50)
     private String nickname ;
 
-    @Column(nullable = false)
-    private Integer status;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false, columnDefinition = "int4")
+//    private Integer status;
+    private UserStatus status;
+
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String nickname, Integer status) {
+    public User(String firstName, String lastName, String nickname, UserStatus status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
@@ -67,11 +70,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public Integer getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 
