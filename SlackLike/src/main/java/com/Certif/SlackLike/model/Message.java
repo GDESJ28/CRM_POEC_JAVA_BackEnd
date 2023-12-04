@@ -34,7 +34,13 @@ public class Message {
     public Message() {
     }
 
-
+    public Message(String message, LocalDateTime dateMessage, User user, Channel channel, Integer status) {
+        this.message = message;
+        this.dateMessage = dateMessage;
+        this.user = user;
+        this.channel = channel;
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
