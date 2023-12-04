@@ -3,6 +3,7 @@ package com.Certif.SlackLike.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="channels")
@@ -24,6 +25,9 @@ public class Channel {
     @Column(nullable = false, columnDefinition = "int4")
    // private Integer status;
     private ChannelStatus status;
+
+    @OneToMany(mappedBy ="channel" ,cascade = CascadeType.ALL)
+    private List<Message> messages;
 
     public Channel() {
     }

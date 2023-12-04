@@ -2,11 +2,15 @@ package com.Certif.SlackLike.controller;
 
 
 import com.Certif.SlackLike.model.Channel;
+import com.Certif.SlackLike.model.ChannelStatus;
 import com.Certif.SlackLike.model.User;
+import com.Certif.SlackLike.repository.ChannelRepository;
 import com.Certif.SlackLike.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("channels")
@@ -14,6 +18,9 @@ public class ChannelController {
 
     @Autowired
     ChannelService channelService;
+
+    @Autowired
+    ChannelRepository channelRepository;
 
     @GetMapping
     public ResponseEntity<?> getAllChannels() {
@@ -44,13 +51,23 @@ public class ChannelController {
         return ResponseEntity.ok(newChannel);
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteChannel(@PathVariable("id") Integer id){
-        if(channelService.getChannelById(id).isEmpty()){
-            return ResponseEntity.status(404).body("Channel with 'ID " + id + " not found");
-        }else{
-            channelService.deleteChannel(id);
-            return ResponseEntity.ok("ok");
+
+        Optional<Channel> optionalChannel = channelService.getChannelById(id);
+
+        if (optionalChannel.isEmpty()) {
+            return ResponseEntity.status(404).body("Channel with ID " + id + " not found");
+        } else {
+            Channel channel = optionalChannel.get();
+
+            if (channel.getStatus() == ChannelStatus.LOCKED) {
+                return ResponseEntity.status(400).body("Cannot delete an locked channel");
+            } else {
+                channelService.deleteChannel(id);
+                return ResponseEntity.ok("ok");
+            }
         }
     }
 

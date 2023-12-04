@@ -44,6 +44,9 @@ public class ChannelService {
         if (getChannelById(id).isEmpty())
             return false;
         else {
+
+
+
             channelRepository.deleteById(id);
             return true;
         }
