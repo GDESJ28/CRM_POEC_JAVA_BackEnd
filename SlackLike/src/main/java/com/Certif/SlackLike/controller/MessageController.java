@@ -1,7 +1,7 @@
 package com.Certif.SlackLike.controller;
 
 
-import com.Certif.SlackLike.model.Channel;
+
 import com.Certif.SlackLike.model.Message;
 import com.Certif.SlackLike.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;

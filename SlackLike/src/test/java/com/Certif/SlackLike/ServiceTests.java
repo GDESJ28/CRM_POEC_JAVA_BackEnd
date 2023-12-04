@@ -1,9 +1,6 @@
 package com.Certif.SlackLike;
 
 import com.Certif.SlackLike.model.*;
-import com.Certif.SlackLike.repository.ChannelRepository;
-import com.Certif.SlackLike.repository.MessageRepository;
-import com.Certif.SlackLike.repository.UserRepository;
 import com.Certif.SlackLike.service.ChannelService;
 import com.Certif.SlackLike.service.MessageService;
 import com.Certif.SlackLike.service.UserService;

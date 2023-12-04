@@ -1,7 +1,6 @@
 package com.Certif.SlackLike.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name="users")

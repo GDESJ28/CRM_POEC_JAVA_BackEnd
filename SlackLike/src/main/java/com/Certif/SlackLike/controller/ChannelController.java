@@ -3,7 +3,6 @@ package com.Certif.SlackLike.controller;
 
 import com.Certif.SlackLike.model.Channel;
 import com.Certif.SlackLike.model.ChannelStatus;
-import com.Certif.SlackLike.model.User;
 import com.Certif.SlackLike.repository.ChannelRepository;
 import com.Certif.SlackLike.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
