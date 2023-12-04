@@ -60,7 +60,27 @@ public class UserController {
         return ResponseEntity.ok(newUser);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Integer id){
+        if(userService.getUserById(id).isEmpty()){
+            return ResponseEntity.status(404).body("User with ID " + id + " not found");
+        }else{
+            userService.deleteUser(id);
+            return ResponseEntity.ok("ok");
+        }
+    }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable("id") Integer id){
+        if (user.getId() == null){
+            return ResponseEntity.badRequest().body("Request Error : Missing User identifier");
+        }
+        if (!user.getId().equals(id)){
+            return ResponseEntity.badRequest().body("Identifier values are different");
+        }
+        return ResponseEntity.ok(userService.updateUser( user));
+
+    }
 
 }
