@@ -1,5 +1,17 @@
 package com.Certif.SlackLike.controller;
 
+import com.Certif.SlackLike.model.Channel;
+import com.Certif.SlackLike.model.ChannelStatus;
+import com.Certif.SlackLike.repository.ChannelRepository;
+import com.Certif.SlackLike.service.ChannelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+
+
 
 import com.Certif.SlackLike.model.Channel;
 import com.Certif.SlackLike.model.ChannelStatus;
@@ -14,13 +26,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("channels")
 public class ChannelController {
-
     @Autowired
     ChannelService channelService;
-
     @Autowired
     ChannelRepository channelRepository;
-
     @GetMapping
     public ResponseEntity<?> getAllChannels() {
         if (channelService.getAllChannels().isEmpty()) {
@@ -30,9 +39,6 @@ public class ChannelController {
             return ResponseEntity.ok(channelService.getAllChannels());
         }
     }
-
-
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getChannelById(@PathVariable("id") Integer id){
         for(Channel c : channelService.getAllChannels()){
@@ -41,16 +47,11 @@ public class ChannelController {
         }
         return ResponseEntity.status(404).body("Channel with ID " + id + " not found");
     }
-
-
-
     @PostMapping
     public ResponseEntity<Channel> addChannel(@RequestBody Channel newChannel){
         channelService.createChannel(newChannel);
         return ResponseEntity.ok(newChannel);
     }
-
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteChannel(@PathVariable("id") Integer id){
 
