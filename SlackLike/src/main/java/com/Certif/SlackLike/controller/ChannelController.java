@@ -22,7 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@CrossOrigin(originPatterns = "*")
 @RestController
 @RequestMapping("channels")
 public class ChannelController {
