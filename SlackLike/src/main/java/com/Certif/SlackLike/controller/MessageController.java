@@ -51,7 +51,8 @@ public class MessageController {
             return ResponseEntity.status(404).body("Message with 'ID " + id + " not found");
         }else{
             messageService.deleteMessage(id);
-            return ResponseEntity.ok("ok");
+            //return ResponseEntity.ok("ok");
+            return ResponseEntity.status(200).body("");
         }
     }
 
