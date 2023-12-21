@@ -13,14 +13,6 @@ import java.util.Optional;
 
 
 
-import com.Certif.SlackLike.model.Channel;
-import com.Certif.SlackLike.model.ChannelStatus;
-import com.Certif.SlackLike.repository.ChannelRepository;
-import com.Certif.SlackLike.service.ChannelService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 @CrossOrigin(originPatterns = "*")
 @RestController
