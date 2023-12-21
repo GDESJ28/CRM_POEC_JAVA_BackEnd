@@ -58,7 +58,8 @@ public class ChannelController {
                 return ResponseEntity.status(400).body("Cannot delete an locked channel");
             } else {
                 channelService.deleteChannel(id);
-                return ResponseEntity.ok("ok");
+               // return ResponseEntity.ok("ok");
+                return ResponseEntity.status(200).body("");
             }
         }
     }
